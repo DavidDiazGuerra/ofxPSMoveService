@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PSMoveClient_CAPI.h"
+#include "ClientGeometry_CAPI.h"
 #include "ofMain.h"
 
 
@@ -76,8 +77,12 @@ public:
 	ofVec3f get_position(int controller);
 	ofVec4f get_orientation(int controller);
 
+	ofVec3f get_orientationAngles(int controller);
+	ofVec3f get_navigationAngles(int controller);
+	ofVec3f get_orientationVector(int controller);
+
 	ofVec3f get_linear_velocity(int controller);		// cm/s
-	ofVec3f get_linear_acceleration(int controller);		// cm/s2
+	ofVec3f get_linear_acceleration(int controller);	// cm/s2
 	ofVec3f get_angular_velocity(int controller);		// rad/s
 	ofVec3f get_angular_acceleration(int controller);	// rad/s2
 
@@ -113,6 +118,8 @@ private:
 	inline ofVec4f psmVec_to_ofVec(PSMQuatf vector);
 	
 	inline PSMQuatf ofVec_to_psmVec(ofVec4f vector);
+
+	ofVec3f quaternion_to_euler(ofVec4f q);
 
 	PSMControllerList controller_list;
 	vector<PSMController*> controllers;

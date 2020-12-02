@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\main.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\ofApp.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\addons\ofxPSMoveService\src\ofxPSMoveService.cpp">
+			<Filter>addons\ofxPSMoveService\src</Filter>
+		</ClCompile>
+	</ItemGroup>
+	<ItemGroup>
+		<Filter Include="src">
+			<UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons">
+			<UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPSMoveService">
+			<UniqueIdentifier>{0F6C28DE-B008-6F8C-1180-2D91}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPSMoveService\src">
+			<UniqueIdentifier>{924CBA74-D008-153F-DCD5-E315}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPSMoveService\libs">
+			<UniqueIdentifier>{A0F00BAE-3688-9353-92F7-61E1}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPSMoveService\libs\PSMoveService">
+			<UniqueIdentifier>{E40ED011-00AF-4FC3-CC3E-5EB3}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="addons\ofxPSMoveService\libs\PSMoveService\include">
+			<UniqueIdentifier>{5D93F2DE-1022-E92B-4DD0-BE8C}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+	<ItemGroup>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ofApp.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\src\ofxPSMoveService.h">
+			<Filter>addons\ofxPSMoveService\src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\libs\PSMoveService\include\ClientConstants.h">
+			<Filter>addons\ofxPSMoveService\libs\PSMoveService\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\libs\PSMoveService\include\ClientGeometry_CAPI.h">
+			<Filter>addons\ofxPSMoveService\libs\PSMoveService\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\libs\PSMoveService\include\ProtocolVersion.h">
+			<Filter>addons\ofxPSMoveService\libs\PSMoveService\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\libs\PSMoveService\include\PSMoveClient_CAPI.h">
+			<Filter>addons\ofxPSMoveService\libs\PSMoveService\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\libs\PSMoveService\include\PSMoveClient_export.h">
+			<Filter>addons\ofxPSMoveService\libs\PSMoveService\include</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\addons\ofxPSMoveService\libs\PSMoveService\include\SharedConstants.h">
+			<Filter>addons\ofxPSMoveService\libs\PSMoveService\include</Filter>
+		</ClInclude>
+	</ItemGroup>
+	<ItemGroup>
+		<ResourceCompile Include="icon.rc" />
+	</ItemGroup>
+</Project>

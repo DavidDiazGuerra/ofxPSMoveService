@@ -102,6 +102,70 @@ ofVec4f ofxPSMoveServiceClient::get_orientation(int controller)
 	return psmVec_to_ofVec(controllers_state[controller]->Pose.Orientation);
 }
 
+ofVec3f ofxPSMoveServiceClient::get_orientationAngles(int controller)
+{
+	// https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+
+	PSMQuatf q = controllers_state[controller]->Pose.Orientation;
+
+	// roll (x-axis rotation)
+	float sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+	float cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+	float roll = std::atan2(sinr_cosp, cosr_cosp);
+
+	// pitch (y-axis rotation)
+	float sinp = 2 * (q.w * q.y - q.z * q.x);
+	float pitch;
+	if (std::abs(sinp) >= 1)
+		pitch = std::copysign(PI / 2, sinp); // use 90 degrees if out of range
+	else
+		pitch = std::asin(sinp);
+
+	// yaw (z-axis rotation)
+	float siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+	float cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+	float yaw = std::atan2(siny_cosp, cosy_cosp);
+
+	return ofVec3f(yaw, pitch, roll);
+}
+
+ofVec3f ofxPSMoveServiceClient::get_navigationAngles(int controller)
+{
+	// http://bediyap.com/programming/convert-quaternion-to-euler-rotations/
+
+	PSMQuatf q = controllers_state[controller]->Pose.Orientation;
+
+	// roll (x-axis rotation)
+	float sinr_cosp = 2 * (q.x * q.y + q.w * q.z);
+	float cosr_cosp = 1 - 2 * (q.x * q.x + q.z * q.z);
+	float roll = std::atan2(sinr_cosp, cosr_cosp);
+
+	// pitch (y-axis rotation)
+	float sinp = 2 * (q.w * q.x - q.y * q.z);
+	float pitch;
+	if (std::abs(sinp) >= 1)
+		pitch = std::copysign(PI / 2, sinp); // use 90 degrees if out of range
+	else
+		pitch = std::asin(sinp);
+
+	// yaw (z-axis rotation)
+	float siny_cosp = 2 * (q.x * q.z + q.w * q.y);
+	float cosy_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+	float yaw = std::atan2(siny_cosp, cosy_cosp);
+
+	return ofVec3f(-yaw, pitch, -roll);
+}
+
+ofVec3f ofxPSMoveServiceClient::get_orientationVector(int controller)
+{
+	PSMVector3f identity = PSMVector3f();
+	identity.x = 0;
+	identity.y = 0;
+	identity.z = -1;
+	PSMVector3f vector = PSM_QuatfRotateVector(&controllers_state[controller]->Pose.Orientation, &identity);
+	return psmVec_to_ofVec(vector);
+}
+
 ofVec3f ofxPSMoveServiceClient::get_linear_velocity(int controller)
 {
 	return psmVec_to_ofVec(controllers_state[controller]->PhysicsData.LinearVelocityCmPerSec);
@@ -247,4 +311,29 @@ inline PSMQuatf ofxPSMoveServiceClient::ofVec_to_psmVec(ofVec4f vector)
 	quat.y = vector.y;
 	quat.z = vector.z;
 	return quat;
+}
+
+ofVec3f ofxPSMoveServiceClient::quaternion_to_euler(ofVec4f q)
+{
+	// https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+
+	// roll (x-axis rotation)
+	double sinr_cosp = 2 * (q.w * q.x + q.y * q.z);
+	double cosr_cosp = 1 - 2 * (q.x * q.x + q.y * q.y);
+	float roll = std::atan2(sinr_cosp, cosr_cosp);
+
+	// pitch (y-axis rotation)
+	double sinp = 2 * (q.w * q.y - q.z * q.x);
+	float pitch;
+	if (std::abs(sinp) >= 1)
+		pitch = std::copysign(PI / 2, sinp); // use 90 degrees if out of range
+	else
+		pitch = std::asin(sinp);
+
+	// yaw (z-axis rotation)
+	double siny_cosp = 2 * (q.w * q.z + q.x * q.y);
+	double cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z);
+	float yaw = std::atan2(siny_cosp, cosy_cosp);
+
+	return ofVec3f(yaw, pitch, roll);
 }
