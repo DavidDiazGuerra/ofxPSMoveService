@@ -27,3 +27,6 @@ PSMoveService provides the orientation information as a quaternion using the sam
  - `get_orientationVector` provides a unitary vector pointing in the same direction as the controller using the same reference system as PSMoveService. Knowing the position of the screen, and with the position of the controller provided by `get_position`, it should be possible to get the pixel the controller is pointing to.
 
 As in the previous example, you can select which controller you want to see in the screen with the arrow keys and pressing the SELECT button of the controller should reset the orientation to the "identity" pose (pointing down the -Z axis).
+
+## Konwn bugs
+ - The Contrller Number must match with the Controller ID for every controller. You can check both values using the `PSMove Config Tool` app that comes with PSMoveService.
